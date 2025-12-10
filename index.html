@@ -3,38 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mostapha El Jaidi - Agro-Tech Developer | Data Science + IA aplicada al sector agrícola. Experto en Python, Linux y Automatización.">
-    <meta name="keywords" content="Agro-Tech, Python Developer, Data Science, AEMET, Agricultural Technology, Biología Molecular, Machine Learning">
-    <meta name="author" content="Mostapha El Jaidi">
+    <meta name="description" content="Mostapha El Jaidi - Agro-Tech Developer | Data Science + IA aplicada al sector agrícola.">
     <meta name="theme-color" content="#020305">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://jaaidi0.github.io/archipielago-digital/">
-    <meta property="og:title" content="Mostapha El Jaidi | Agro-Tech Developer">
-    <meta property="og:description" content="De la biología molecular al código. Python, Data Science e IA aplicada al sector agrícola.">
-    <meta property="og:image" content="https://jaaidi0.github.io/archipielago-digital/img/foto.png">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://jaaidi0.github.io/archipielago-digital/">
-    <meta property="twitter:title" content="Mostapha El Jaidi | Agro-Tech Developer">
-    <meta property="twitter:description" content="De la biología molecular al código. Python, Data Science e IA aplicada al sector agrícola.">
-    <meta property="twitter:image" content="https://jaaidi0.github.io/archipielago-digital/img/foto.png">
-
-    <title>Mostapha El Jaidi | Agro-Tech Developer</title>
+    <title>Mostapha El Jaaidi | Agro-Tech Developer</title>
     <link rel="icon" type="image/svg+xml" href="img/barco.svg">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=JetBrains+Mono:wght@400&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Skip Navigation para accesibilidad -->
-    <a href="#hero" class="skip-nav">Saltar al contenido principal</a>
-
     <div id="loader">
         <div class="loader-content">
-            <h1 class="neon-text" data-t="loader.text">INICIALIZANDO BIOSISTEMA...</h1>
+            <h1 class="neon-text" data-t="loader.text">INICIALIZANDO SISTEMA...</h1>
             <div class="loading-bar"></div>
         </div>
     </div>
@@ -61,7 +41,7 @@
             </div>
             
             <div class="controls mobile-controls">
-                <button id="muteBtn" class="icon-btn" aria-label="Sonido">🔊</button>
+                <button id="muteBtn" class="icon-btn" aria-label="Silenciar">🔊</button>
                 <div class="lang-switch">
                     <button onclick="setLang('es')" class="lang-active">ES</button>
                     <button onclick="setLang('en')">EN</button>
@@ -77,7 +57,7 @@
             <div class="profile-wrapper">
                 <div class="holo-ring"></div>
                 <div class="holo-ring ring-2"></div>
-                <img src="img/foto.png" alt="Mostapha El Jaidi" class="profile-img" loading="eager">
+                <img src="img/foto.png" alt="Mostapha El Jaidi" class="profile-img">
             </div>
             
             <div class="hero-text">
@@ -110,9 +90,7 @@
                         </p>
                         
                         <p class="project-description" data-t="featured.project_desc">
-                            Plataforma avanzada que procesa datos de la API de AEMET con técnicas de programación concurrente. 
-                            Optimizado de <span class="highlight">130s a 1.14s</span> mediante ThreadPoolExecutor, 
-                            rate limiting inteligente y caché multinivel.
+                            Plataforma avanzada que procesa datos de la API de AEMET. Optimizado de <span class="highlight">130s a 1.14s</span> mediante ThreadPoolExecutor, rate limiting inteligente y caché multinivel.
                         </p>
 
                         <div class="metrics">
@@ -139,14 +117,13 @@
                             <span class="tech-tag">Streamlit</span>
                             <span class="tech-tag">Pandas</span>
                             <span class="tech-tag">Plotly</span>
-                            <span class="tech-tag">Threading</span>
                         </div>
 
                         <div class="project-actions">
-                            <a href="https://aemet-dashboard-pro-3s9ay3cnvowfgvrutqvh4w.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-link btn-primary-link" data-t="featured.btn_live">
+                            <a href="https://aemet-dashboard-pro-3s9ay3cnvowfgvrutqvh4w.streamlit.app/" target="_blank" class="btn-link btn-primary-link" data-t="featured.btn_live">
                                 🚀 VER EN VIVO
                             </a>
-                            <a href="https://github.com/jaaidi0/aemet-dashboard_pro" target="_blank" rel="noopener noreferrer" class="btn-link btn-secondary-link" data-t="featured.btn_code">
+                            <a href="https://github.com/jaaidi0" target="_blank" class="btn-link btn-secondary-link" data-t="featured.btn_code">
                                 💻 CÓDIGO
                             </a>
                         </div>
@@ -162,7 +139,6 @@
 <span class="code-check">✓</span> Token Bucket <span class="code-comment">// Rate limiting</span>
 <span class="code-check">✓</span> Multi-level Cache <span class="code-comment">// Session + TTL</span>
 <span class="code-check">✓</span> Exponential Backoff <span class="code-comment">// Retry</span>
-<span class="code-check">✓</span> Smart Alerts <span class="code-comment">// Alertas IA</span>
 
 <span class="code-comment"># Performance:</span>
 <span class="code-key">load_time:</span> <span class="code-value">1.14s</span> <span class="code-comment">(was 130s)</span>
@@ -183,12 +159,12 @@
                         <h3 data-t="projects.portfolio_title">Portfolio Interactivo</h3>
                     </div>
                     <p data-t="projects.portfolio_desc">
-                        Portfolio personal con efectos avanzados: partículas con Canvas API, sistema multilingüe y animaciones CSS3.
+                        Portfolio personal con efectos avanzados: partículas Canvas, i18n y diseño responsivo.
                     </p>
                     <div class="tags">
                         <span>HTML5</span><span>CSS3</span><span>JS</span>
                     </div>
-                    <a href="https://github.com/jaaidi0/archipielago-digital" target="_blank" rel="noopener noreferrer" class="btn-link" data-t="projects.btn_code">CÓDIGO</a>
+                    <a href="https://github.com/jaaidi0/archipielago-digital" target="_blank" class="btn-link" data-t="projects.btn_code">CÓDIGO</a>
                 </article>
 
                 <article class="card">
@@ -202,7 +178,7 @@
                     <div class="tags">
                         <span>Python</span><span>Bash</span><span>Cron</span>
                     </div>
-                    <a href="https://github.com/jaaidi0" target="_blank" rel="noopener noreferrer" class="btn-link" data-t="projects.btn_github">GITHUB</a>
+                    <a href="https://github.com/jaaidi0" target="_blank" class="btn-link" data-t="projects.btn_github">GITHUB</a>
                 </article>
 
                 <article class="card">
@@ -216,7 +192,7 @@
                     <div class="tags">
                         <span>Python</span><span>FFmpeg</span><span>AI</span>
                     </div>
-                    <a href="https://tiktok.com/@botanix.uni" target="_blank" rel="noopener noreferrer" class="btn-link" data-t="projects.btn_profile">VER PERFIL</a>
+                    <a href="https://tiktok.com/@botanix.uni" target="_blank" class="btn-link" data-t="projects.btn_profile">VER PERFIL</a>
                 </article>
             </div>
         </section>
@@ -229,8 +205,8 @@
             </p>
             <div class="contact-links">
                 <a href="mailto:eljaa@alum.us.es" class="btn-contact" data-t="contact.email">📧 Email</a>
-                <a href="https://linkedin.com/in/el-jaidi" target="_blank" rel="noopener noreferrer" class="btn-contact">💼 LinkedIn</a>
-                <a href="https://github.com/jaaidi0" target="_blank" rel="noopener noreferrer" class="btn-contact">💻 GitHub</a>
+                <a href="https://linkedin.com/in/el-jaidi" target="_blank" class="btn-contact">💼 LinkedIn</a>
+                <a href="https://github.com/jaaidi0" target="_blank" class="btn-contact">💻 GitHub</a>
             </div>
             <p class="copyright">© 2025 Mostapha El Jaidi | <span data-t="contact.copyright">Agro-Tech Developer</span></p>
         </section>
