@@ -3,581 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroSentinel Architecture Diagram</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: #05080f;
-            color: #f8fafc;
-            padding: 40px 20px;
-            line-height: 1.6;
-        }
+    <meta name="description" content="El Mostapha Jaaidi - Senior Agro-Tech Engineer & Data Systems Architect. Especialista en IoT, Python y Cloud para agricultura de precisión.">
+    <meta name="author" content="El Mostapha Jaaidi">
+    <meta name="theme-color" content="#05080f">
 
+    <title>El Mostapha Jaaidi | Senior Agro-Tech Engineer</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    
+    <style>
         :root {
-            --primary: #00ff9d;
-            --secondary: #38bdf8;
-            --accent: #a855f7;
+            --bg: #05080f;
             --surface: #0e121b;
             --surface-hover: #161b26;
-            --border: rgba(255,255,255,0.08);
+            --primary: #00ff9d;
+            --secondary: #38bdf8;
+            --accent: #a855f7; 
+            --text: #f8fafc;
             --text-muted: #94a3b8;
+            --border: rgba(255,255,255,0.08);
         }
 
-        /* PROJECT CARD */
-        .project-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 45px;
-            max-width: 1150px;
-            margin: 0 auto;
-            transition: transform 0.3s, border-color 0.3s, background 0.3s;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .project-card:hover {
-            border-color: rgba(0, 255, 157, 0.3);
-            transform: translateY(-4px);
-            background: var(--surface-hover);
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 18px 5%;
+            background: rgba(5, 8, 15, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .brand { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.5px; }
+        .brand span { color: var(--primary); }
+        .nav-items a { color: var(--text-muted); text-decoration: none; margin-left: 30px; font-size: 0.9rem; transition: 0.2s; }
+        .nav-items a:hover { color: var(--primary); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            padding: 120px 20px 60px; position: relative;
+        }
+        .container { max-width: 1150px; width: 100%; display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 70px; align-items: center; }
+
+        .origin-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 16px; border-radius: 20px;
+            background: rgba(0, 255, 157, 0.05); color: var(--primary);
+            font-size: 0.8rem; font-weight: 700; margin-bottom: 24px;
+            border: 1px solid rgba(0, 255, 157, 0.2); text-transform: uppercase;
         }
 
-        .cs-header {
-            margin-bottom: 30px;
-        }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; font-weight: 800; margin-bottom: 15px; color: #fff; }
+        .role-subtitle { font-size: 1.3rem; color: var(--text-muted); margin-bottom: 25px; }
+        .role-subtitle span { color: var(--secondary); font-weight: 600; }
 
-        .cs-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 8px;
-        }
+        .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin-bottom: 35px; }
+        .hero p strong { color: var(--primary); }
 
-        .dot-strong {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--primary);
-            box-shadow: 0 0 12px var(--primary);
+        /* --- AVAILABILITY BANNER --- */
+        .availability-banner {
+            background: linear-gradient(90deg, rgba(0, 255, 157, 0.03), rgba(56, 189, 248, 0.03));
+            border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            padding: 20px 0; margin-bottom: 60px;
         }
+        .banner-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; max-width: 1150px; margin: 0 auto; padding: 0 20px; }
+        .status { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--primary); font-size: 0.9rem; }
+        .live-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 10px var(--primary); animation: pulse 2s infinite; }
 
-        .cs-subtitle {
-            font-size: 0.95rem;
-            color: var(--primary);
-            font-weight: 600;
-            opacity: 0.9;
-        }
-
-        /* ARCHITECTURE DIAGRAM - El Corazón del Upgrade */
+        /* --- ARCHITECTURE DIAGRAM --- */
         .architecture-diagram {
-            background: rgba(0,0,0,0.4);
-            border: 1px solid rgba(0,255,135,0.2);
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 2rem 0;
-            position: relative;
-            overflow: hidden;
+            background: rgba(0,0,0,0.3); border: 1px solid var(--border);
+            border-radius: 12px; padding: 25px; margin: 25px 0; position: relative; overflow: hidden;
         }
-
-        .architecture-diagram::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
+        .architecture-diagram::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 2px;
             background: linear-gradient(90deg, transparent, var(--primary), transparent);
-            animation: scan 3s linear infinite;
+            animation: scan 4s linear infinite;
         }
+        @keyframes scan { 0% { left: -100%; } 100% { left: 100%; } }
 
-        @keyframes scan {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        .arch-layer { background: rgba(255,255,255,0.02); border-radius: 8px; padding: 15px; margin-bottom: 10px; border-left: 3px solid var(--text-muted); }
+        .arch-layer.hardware { border-left-color: var(--accent); }
+        .arch-layer.backend { border-left-color: var(--primary); }
+        .arch-layer.cloud { border-left-color: var(--secondary); }
+        .layer-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 8px; display: block; }
+        .components { display: flex; gap: 8px; flex-wrap: wrap; }
+        .component { background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; border: 1px solid var(--border); }
+        .arch-arrow { text-align: center; color: var(--primary); font-weight: 800; margin: 5px 0; }
+
+        /* --- PROJECT CARDS --- */
+        .project-card {
+            background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+            padding: 40px; margin-bottom: 40px; display: grid; grid-template-columns: 1.4fr 0.6fr; gap: 40px;
         }
-
-        .arch-layer {
-            background: linear-gradient(135deg, rgba(0,255,135,0.05), rgba(0,200,255,0.05));
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px;
-            padding: 1.25rem;
-            margin: 1rem 0;
-            transition: all 0.3s ease;
-            position: relative;
+        .cs-title { font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
+        .metric-box { background: rgba(0,0,0,0.2); padding: 30px; border-radius: 16px; text-align: center; border: 1px solid var(--border); }
+        .metric-val { font-size: 2.5rem; font-weight: 800; color: var(--primary); }
+        .btn-link { 
+            display: inline-block; margin-top: 15px; color: var(--primary); text-decoration: none; font-weight: 600; 
+            padding: 10px 20px; border: 1px solid var(--primary); border-radius: 8px; transition: 0.3s;
         }
+        .btn-link:hover { background: var(--primary); color: #000; }
 
-        .arch-layer:hover {
-            border-color: rgba(0,255,135,0.4);
-            background: linear-gradient(135deg, rgba(0,255,135,0.1), rgba(0,200,255,0.1));
-            transform: translateX(5px);
-        }
-
-        .arch-layer.hardware {
-            border-left: 3px solid var(--accent);
-        }
-
-        .arch-layer.backend {
-            border-left: 3px solid var(--primary);
-        }
-
-        .arch-layer.cloud {
-            border-left: 3px solid var(--secondary);
-        }
-
-        .layer-label {
-            display: block;
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 0.75rem;
-            font-weight: 700;
-        }
-
-        .components {
-            display: flex;
-            gap: 0.65rem;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .component {
-            background: rgba(255,255,255,0.05);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: #fff;
-            font-weight: 500;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.2s;
-            position: relative;
-        }
-
-        .component:hover {
-            background: rgba(0,255,135,0.15);
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .component::before {
-            content: '●';
-            margin-right: 6px;
-            font-size: 0.6rem;
-        }
-
-        .hardware .component::before { color: var(--accent); }
-        .backend .component::before { color: var(--primary); }
-        .cloud .component::before { color: var(--secondary); }
-
-        .arch-arrow {
-            text-align: center;
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin: 0.5rem 0;
-            font-weight: 700;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .project-description {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-            margin: 1.5rem 0;
-            padding: 1.25rem;
-            background: rgba(0,0,0,0.2);
-            border-left: 3px solid var(--primary);
-            border-radius: 4px;
-        }
-
-        .project-description strong {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        /* TAGS */
-        .tech-stack {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
-        }
-
-        .tech-tag {
-            font-size: 0.75rem;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-weight: 600;
-            border: 1px solid;
-            letter-spacing: 0.5px;
-        }
-
-        .tech-tag:nth-child(1) {
-            background: rgba(251, 191, 36, 0.1);
-            color: #ffb020;
-            border-color: rgba(251, 191, 36, 0.2);
-        }
-
-        .tech-tag:nth-child(2) {
-            background: rgba(0, 255, 157, 0.1);
-            color: #00ff9d;
-            border-color: rgba(0, 255, 157, 0.2);
-        }
-
-        .tech-tag:nth-child(3) {
-            background: rgba(56, 189, 248, 0.1);
-            color: #38bdf8;
-            border-color: rgba(56, 189, 248, 0.2);
-        }
-
-        .tech-tag:nth-child(4) {
-            background: rgba(0, 255, 157, 0.1);
-            color: #00ff9d;
-            border-color: rgba(0, 255, 157, 0.2);
-        }
-
-        .tech-tag:nth-child(5) {
-            background: rgba(168, 85, 247, 0.1);
-            color: #d8b4fe;
-            border-color: rgba(168, 85, 247, 0.2);
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .btn-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 0.75rem 1.5rem;
-            background: rgba(0,255,135,0.1);
-            border: 1px solid rgba(0,255,135,0.3);
-            border-radius: 8px;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-        }
-
-        .btn-link:hover {
-            background: rgba(0,255,135,0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,255,135,0.2);
-        }
-
-        .code-block {
-            background: #000;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 30px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.75rem;
-            color: #00ff9d;
-            overflow-x: auto;
-            line-height: 1.5;
-        }
-
-        .instruction {
-            background: rgba(56, 189, 248, 0.1);
-            border-left: 3px solid var(--secondary);
-            padding: 15px 20px;
-            margin: 20px 0;
-            border-radius: 4px;
-            font-size: 0.95rem;
-        }
+        /* --- UTILS --- */
+        #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        @media (max-width: 900px) { .container, .project-card { grid-template-columns: 1fr; } .hero-img-wrapper { display: none; } }
     </style>
 </head>
 <body>
-    <!-- PREVIEW COMPLETO -->
-    <article class="project-card">
-        <div class="cs-header">
-            <h3 class="cs-title">AgroSentinel IoT <div class="dot-strong"></div></h3>
-            <div class="cs-subtitle">Monitorización microclimática predictiva</div>
-        </div>
 
-        <!-- EL DIAGRAMA DE ARQUITECTURA -->
-        <div class="architecture-diagram">
-            <div class="arch-layer hardware">
-                <span class="layer-label">⚡ Hardware Layer</span>
-                <div class="components">
-                    <span class="component">ESP32</span>
-                    <span class="component">DHT22</span>
-                    <span class="component">Relés 4CH</span>
-                    <span class="component">MQTT Protocol</span>
+    <nav>
+        <div class="brand">EL MOSTAPHA <span>JAAIDI</span></div>
+        <div class="nav-items">
+            <a href="#projects">Proyectos</a>
+            <a href="https://linkedin.com/in/el-jaidi" target="_blank">LinkedIn</a>
+            <a href="mailto:eljaa@alum.us.es">Contacto</a>
+        </div>
+    </nav>
+
+    <canvas id="particles"></canvas>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="origin-badge">
+                    <div class="live-dot"></div> Biología + Ingeniería IoT
+                </div>
+                <h1>De los Cultivos <br> a la Infraestructura Cloud</h1>
+                <div class="role-subtitle">Senior Agro-Tech Engineer & <span>Data Architect</span></div>
+                <p>
+                    Transformo sensores en decisiones estratégicas. Diseño sistemas distribuidos que 
+                    <strong>anticipan plagas y optimizan el riego</strong> eliminando la incertidumbre del campo mediante Python e IA.
+                </p>
+                <div class="btn-group">
+                    <a href="#projects" class="btn-link" style="background: var(--primary); color: #000;">Explorar Proyectos</a>
                 </div>
             </div>
-            
-            <div class="arch-arrow">↓</div>
-            
-            <div class="arch-layer backend">
-                <span class="layer-label">🔧 Backend Layer</span>
-                <div class="components">
-                    <span class="component">FastAPI</span>
-                    <span class="component">Python ETL</span>
-                    <span class="component">PostgreSQL</span>
-                    <span class="component">Redis Cache</span>
-                    <span class="component">VPD Calculator</span>
-                </div>
-            </div>
-            
-            <div class="arch-arrow">↓</div>
-            
-            <div class="arch-layer cloud">
-                <span class="layer-label">☁️ Infrastructure Layer</span>
-                <div class="components">
-                    <span class="component">Docker Compose</span>
-                    <span class="component">DigitalOcean</span>
-                    <span class="component">Nginx Reverse Proxy</span>
-                    <span class="component">TimescaleDB</span>
-                </div>
+            <div class="hero-img-wrapper">
+                <img src="img/foto.png" alt="El Mostapha Jaaidi" style="width: 100%; border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);" onerror="this.src='https://ui-avatars.com/api/?name=Mostapha+Jaaidi&background=0e121b&color=00ff9d&size=400'">
             </div>
         </div>
+    </section>
 
-        <p class="project-description">
-            <strong>El proyecto que demuestra mi transición:</strong> De monitorear cultivos físicos con sensores a construir pipelines de datos en producción con arquitectura escalable. Cada capa del sistema fue diseñada para resolver un problema específico: reducción del 25% en riesgo fúngico mediante decisiones basadas en datos.
-        </p>
-
-        <div class="tech-stack">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">FastAPI</span>
-            <span class="tech-tag">Docker</span>
-            <span class="tech-tag">PostgreSQL</span>
-            <span class="tech-tag">ESP32/IoT</span>
+    <section class="availability-banner">
+        <div class="banner-flex">
+            <div class="status"><div class="live-dot"></div> DISPONIBLE PARA PRÁCTICAS FCT (MARZO 2026)</div>
+            <div style="color: var(--text-muted);">Especialidad: <strong>Microinformática, IoT & Backend</strong></div>
+            <div style="font-size: 0.8rem; letter-spacing: 1px;">SEVILLA / DOS HERMANAS / REMOTO</div>
         </div>
+    </section>
 
-        <div class="project-links">
-            <a href="https://github.com/jaaidi0/AgroSentinel" target="_blank" class="btn-link">
-                📄 Ver Código Completo →
-            </a>
-            <a href="https://github.com/jaaidi0/AgroSentinel/blob/main/README.md" target="_blank" class="btn-link">
-                📖 Documentación Técnica →
-            </a>
-        </div>
-    </article>
+    <section id="projects" style="max-width: 1150px; margin: 0 auto; padding: 0 20px;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 40px;">Proyectos Destacados</h2>
 
-    <div class="instruction" style="max-width: 1150px; margin: 30px auto;">
-        <strong>📋 Instrucciones:</strong><br>
-        1. Busca el primer <code>&lt;article class="project-card"&gt;</code> de AgroSentinel (línea ~405)<br>
-        2. Reemplaza TODO el contenido hasta <code>&lt;/article&gt;</code> (hasta línea ~445 aprox.)<br>
-        3. Pega el código HTML completo de abajo<br>
-        4. Añade el CSS nuevo al final de tu &lt;style&gt;
-    </div>
+        <article class="project-card">
+            <div class="case-study">
+                <h3 class="cs-title">AgroSentinel IoT</h3>
+                <p style="color: var(--primary); font-weight: 600; margin-bottom: 20px;">Monitorización microclimática predictiva</p>
+                
+                <div class="architecture-diagram">
+                    <div class="arch-layer hardware">
+                        <span class="layer-label">⚡ Hardware (Edge)</span>
+                        <div class="components">
+                            <span class="component">ESP32 Node</span><span class="component">DHT22</span><span class="component">Relays</span><span class="component">MQTT</span>
+                        </div>
+                    </div>
+                    <div class="arch-arrow">↓</div>
+                    <div class="arch-layer backend">
+                        <span class="layer-label">🔧 Backend (Intelligence)</span>
+                        <div class="components">
+                            <span class="component">FastAPI</span><span class="component">Python ETL</span><span class="component">VPD Engine</span><span class="component">PostgreSQL</span>
+                        </div>
+                    </div>
+                    <div class="arch-arrow">↓</div>
+                    <div class="arch-layer cloud">
+                        <span class="layer-label">☁️ Infrastructure (Cloud/On-Prem)</span>
+                        <div class="components">
+                            <span class="component">Docker</span><span class="component">GCP Madrid</span><span class="component">DigitalOcean</span><span class="component">Nginx</span>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="code-block" style="max-width: 1150px; margin: 0 auto;">
-&lt;!-- REEMPLAZA EL PRIMER &lt;article class="project-card"&gt; COMPLETO --&gt;
-&lt;article class="project-card"&gt;
-    &lt;div class="cs-header"&gt;
-        &lt;h3 class="cs-title"&gt;AgroSentinel IoT &lt;div class="dot-strong"&gt;&lt;/div&gt;&lt;/h3&gt;
-        &lt;div class="cs-subtitle" data-key="p1_sub"&gt;Monitorización microclimática predictiva&lt;/div&gt;
-    &lt;/div&gt;
+                <p style="margin-top: 20px; color: var(--text-muted);">
+                    <strong>Impacto Real:</strong> Reducción del 25% en riesgo fúngico mediante el cálculo en tiempo real del Déficit de Presión de Vapor (VPD). Implementado en arquitectura Multi-Cloud distribuida.
+                </p>
+            </div>
+            
+            <div class="metric-col">
+                <div class="metric-box">
+                    <div class="metric-val">24/7</div>
+                    <div style="text-transform: uppercase; font-size: 0.8rem; margin-bottom: 20px;">Uptime Telemetría</div>
+                    <a href="https://github.com/jaaidi0/AgroSentinel" target="_blank" class="btn-link">Ver Código</a>
+                    <a href="https://github.com/jaaidi0/AgroSentinel/blob/main/README.md" target="_blank" class="btn-link" style="border-color: var(--secondary); color: var(--secondary);">Documentación</a>
+                </div>
+            </div>
+        </article>
+    </section>
 
-    &lt;div class="architecture-diagram"&gt;
-        &lt;div class="arch-layer hardware"&gt;
-            &lt;span class="layer-label"&gt;⚡ Hardware Layer&lt;/span&gt;
-            &lt;div class="components"&gt;
-                &lt;span class="component"&gt;ESP32&lt;/span&gt;
-                &lt;span class="component"&gt;DHT22&lt;/span&gt;
-                &lt;span class="component"&gt;Relés 4CH&lt;/span&gt;
-                &lt;span class="component"&gt;MQTT Protocol&lt;/span&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        
-        &lt;div class="arch-arrow"&gt;↓&lt;/div&gt;
-        
-        &lt;div class="arch-layer backend"&gt;
-            &lt;span class="layer-label"&gt;🔧 Backend Layer&lt;/span&gt;
-            &lt;div class="components"&gt;
-                &lt;span class="component"&gt;FastAPI&lt;/span&gt;
-                &lt;span class="component"&gt;Python ETL&lt;/span&gt;
-                &lt;span class="component"&gt;PostgreSQL&lt;/span&gt;
-                &lt;span class="component"&gt;Redis Cache&lt;/span&gt;
-                &lt;span class="component"&gt;VPD Calculator&lt;/span&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        
-        &lt;div class="arch-arrow"&gt;↓&lt;/div&gt;
-        
-        &lt;div class="arch-layer cloud"&gt;
-            &lt;span class="layer-label"&gt;☁️ Infrastructure Layer&lt;/span&gt;
-            &lt;div class="components"&gt;
-                &lt;span class="component"&gt;Docker Compose&lt;/span&gt;
-                &lt;span class="component"&gt;DigitalOcean&lt;/span&gt;
-                &lt;span class="component"&gt;Nginx Reverse Proxy&lt;/span&gt;
-                &lt;span class="component"&gt;TimescaleDB&lt;/span&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
+    <footer style="text-align: center; padding: 100px 20px; border-top: 1px solid var(--border); margin-top: 100px;">
+        <h2 style="margin-bottom: 20px;">¿Hablamos de Datos?</h2>
+        <a href="mailto:eljaa@alum.us.es" style="font-size: 2rem; color: var(--primary); text-decoration: none; font-weight: 800;">eljaa@alum.us.es</a>
+        <p style="margin-top: 40px; color: var(--text-muted); font-size: 0.8rem;">&copy; 2026 El Mostapha Jaaidi. Engineered in Dos Hermanas, Sevilla.</p>
+    </footer>
 
-    &lt;p class="project-description"&gt;
-        &lt;strong&gt;El proyecto que demuestra mi transición:&lt;/strong&gt; De monitorear cultivos físicos con sensores a construir pipelines de datos en producción con arquitectura escalable. Cada capa del sistema fue diseñada para resolver un problema específico: reducción del 25% en riesgo fúngico mediante decisiones basadas en datos.
-    &lt;/p&gt;
-
-    &lt;div class="tech-stack"&gt;
-        &lt;span class="tech-tag"&gt;Python&lt;/span&gt;
-        &lt;span class="tech-tag"&gt;FastAPI&lt;/span&gt;
-        &lt;span class="tech-tag"&gt;Docker&lt;/span&gt;
-        &lt;span class="tech-tag"&gt;PostgreSQL&lt;/span&gt;
-        &lt;span class="tech-tag"&gt;ESP32/IoT&lt;/span&gt;
-    &lt;/div&gt;
-
-    &lt;div class="project-links"&gt;
-        &lt;a href="https://github.com/jaaidi0/AgroSentinel" target="_blank" class="btn-link"&gt;
-            📄 Ver Código Completo →
-        &lt;/a&gt;
-    &lt;/div&gt;
-&lt;/article&gt;
-    </div>
-
-    <div class="code-block" style="max-width: 1150px; margin: 20px auto;">
-/* CSS NUEVO - Añade esto después de .project-card existente */
-
-.architecture-diagram {
-    background: rgba(0,0,0,0.4);
-    border: 1px solid rgba(0,255,135,0.2);
-    border-radius: 12px;
-    padding: 2rem;
-    margin: 2rem 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.architecture-diagram::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--primary), transparent);
-    animation: scan 3s linear infinite;
-}
-
-@keyframes scan {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-
-.arch-layer {
-    background: linear-gradient(135deg, rgba(0,255,135,0.05), rgba(0,200,255,0.05));
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 10px;
-    padding: 1.25rem;
-    margin: 1rem 0;
-    transition: all 0.3s ease;
-}
-
-.arch-layer:hover {
-    border-color: rgba(0,255,135,0.4);
-    background: linear-gradient(135deg, rgba(0,255,135,0.1), rgba(0,200,255,0.1));
-    transform: translateX(5px);
-}
-
-.arch-layer.hardware { border-left: 3px solid var(--accent); }
-.arch-layer.backend { border-left: 3px solid var(--primary); }
-.arch-layer.cloud { border-left: 3px solid var(--secondary); }
-
-.layer-label {
-    display: block;
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 0.75rem;
-    font-weight: 700;
-}
-
-.components {
-    display: flex;
-    gap: 0.65rem;
-    flex-wrap: wrap;
-}
-
-.component {
-    background: rgba(255,255,255,0.05);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    color: #fff;
-    font-weight: 500;
-    border: 1px solid rgba(255,255,255,0.1);
-    transition: all 0.2s;
-}
-
-.component:hover {
-    background: rgba(0,255,135,0.15);
-    border-color: var(--primary);
-    transform: translateY(-2px);
-}
-
-.component::before {
-    content: '●';
-    margin-right: 6px;
-    font-size: 0.6rem;
-}
-
-.hardware .component::before { color: var(--accent); }
-.backend .component::before { color: var(--primary); }
-.cloud .component::before { color: var(--secondary); }
-
-.arch-arrow {
-    text-align: center;
-    font-size: 1.8rem;
-    color: var(--primary);
-    margin: 0.5rem 0;
-    font-weight: 700;
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
-
-.project-description {
-    font-size: 1.05rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-    margin: 1.5rem 0;
-    padding: 1.25rem;
-    background: rgba(0,0,0,0.2);
-    border-left: 3px solid var(--primary);
-    border-radius: 4px;
-}
-
-.project-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-
-.btn-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0.75rem 1.5rem;
-    background: rgba(0,255,135,0.1);
-    border: 1px solid rgba(0,255,135,0.3);
-    border-radius: 8px;
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.2s;
-}
-
-.btn-link:hover {
-    background: rgba(0,255,135,0.2);
-    transform: translateY(-2px);
-}
-    </div>
+    <script>
+        /* PARTICLES ENGINE */
+        const canvas = document.getElementById("particles");
+        const ctx = canvas.getContext("2d");
+        let w, h, particles = [];
+        function init() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+            particles = Array.from({length: 50}, () => ({
+                x: Math.random() * w, y: Math.random() * h,
+                vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5
+            }));
+        }
+        function animate() {
+            ctx.clearRect(0,0,w,h);
+            particles.forEach(p => {
+                p.x += p.vx; p.y += p.vy;
+                if(p.x<0 || p.x>w) p.vx*=-1; if(p.y<0 || p.y>h) p.vy*=-1;
+                ctx.fillStyle = "rgba(0,255,157,0.3)";
+                ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI*2); ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        }
+        window.addEventListener("resize", init);
+        init(); animate();
+    </script>
 </body>
 </html>
