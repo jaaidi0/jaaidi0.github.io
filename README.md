@@ -10,7 +10,7 @@
 
 **"Donde la biología molecular converge con la arquitectura de software."**
 
-[🌐 Live Demo](https://jaaidi0.github.io/AgroSentinel/) • [📄 Ver Código](https://github.com/jaaidi0/AgroSentinel) • [💼 LinkedIn](https://linkedin.com/in/el-jaidi)
+[🌐 Live Demo](https://jaaidi0.github.io/) • [📄 Ver Código](https://github.com/jaaidi0/AgroSentinel) • [💼 LinkedIn](https://linkedin.com/in/el-jaidi)
 
 </div>
 
