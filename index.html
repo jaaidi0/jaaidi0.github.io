@@ -3,122 +3,351 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="El Mostapha Jaaidi - Senior Agro-Tech Engineer & Data Systems Architect. Especialista en IoT, Python y Machine Learning para agricultura de precisión.">
+    <meta name="keywords" content="AgroTech, IoT, Python, Data Science, MQTT, TimescaleDB, Agricultura de Precisión, Data Architect">
+    <meta name="author" content="El Mostapha Jaaidi">
+    <meta name="theme-color" content="#05080f">
+
+    <meta property="og:site_name" content="Agro-Tech Engineering Portfolio">
+    <meta property="og:title" content="El Mostapha Jaaidi | Senior Agro-Tech Engineer">
+    <meta property="og:description" content="Diseño sistemas IoT y plataformas de datos que anticipan plagas y optimizan cultivos.">
+    <meta property="og:image" content="img/foto.png">
+    <meta property="og:type" content="profile">
+    
     <title>El Mostapha Jaaidi | Senior Agro-Tech Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "El Mostapha Jaaidi",
+      "jobTitle": "Senior Agro-Tech Engineer & Data Systems Architect",
+      "knowsAbout": ["IoT", "Python", "Agro-Data Intelligence", "MQTT", "Docker"],
+      "url": "https://jaaidi0.github.io",
+      "sameAs": [
+        "https://linkedin.com/in/el-jaidi",
+        "https://github.com/jaaidi0"
+      ]
+    }
+    </script>
+
     <style>
         :root {
-            --bg: #05080f; --surface: #0e121b; --primary: #00ff9d; --secondary: #38bdf8;
-            --accent: #a855f7; --text: #f8fafc; --text-muted: #94a3b8; --border: rgba(255,255,255,0.08);
+            --bg: #05080f;
+            --surface: #0e121b;
+            --surface-hover: #161b26;
+            --primary: #00ff9d;
+            --primary-glow: rgba(0, 255, 157, 0.15);
+            --secondary: #38bdf8;
+            --accent: #a855f7; 
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255,255,255,0.08);
+            
+            --tag-infra-bg: rgba(56, 189, 248, 0.1); --tag-infra-text: #38bdf8;
+            --tag-data-bg: rgba(0, 255, 157, 0.1); --tag-data-text: #00ff9d;
+            --tag-backend-bg: rgba(251, 191, 36, 0.1); --tag-backend-text: #ffb020;
+            --tag-iot-bg: rgba(168, 85, 247, 0.1); --tag-iot-text: #d8b4fe;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 18px 5%;
+            background: rgba(5, 8, 15, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .brand { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.5px; color: #fff; }
+        .brand span { color: var(--primary); }
+        .nav-items a { color: var(--text-muted); text-decoration: none; margin-left: 30px; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+        .nav-items a:hover { color: var(--primary); }
+
+        .lang-switch { background: rgba(255,255,255,0.05); border: 1px solid var(--border); padding: 4px; border-radius: 6px; display: flex; gap: 4px; margin-left: 20px; }
+        .lang-btn { background: transparent; border: none; color: var(--text-muted); padding: 4px 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer; border-radius: 4px; transition: 0.3s; }
+        .lang-btn.active { background: var(--primary); color: #000; }
+
+        /* HERO */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 20px 80px; position: relative; }
+        .container { max-width: 1150px; width: 100%; display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 70px; align-items: center; }
+
+        .origin-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 14px; border-radius: 20px;
+            background: rgba(0, 255, 157, 0.05); color: var(--primary);
+            font-size: 0.75rem; font-weight: 700; margin-bottom: 24px;
+            border: 1px solid rgba(0, 255, 157, 0.2); letter-spacing: 0.5px; text-transform: uppercase;
+        }
+
+        h1 { font-size: clamp(3rem, 5.5vw, 4.5rem); line-height: 1.05; font-weight: 800; margin-bottom: 15px; letter-spacing: -1.5px; color: #fff; }
+        .role-subtitle { font-size: 1.4rem; color: var(--text-muted); margin-bottom: 25px; font-weight: 500; }
+        .role-subtitle span { color: var(--text); font-weight: 600; }
+
+        /* BANNER DISPONIBILIDAD */
+        .availability-banner {
+            background: linear-gradient(90deg, rgba(0,255,157,0.05), rgba(56,189,248,0.05));
+            border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            padding: 20px 0; margin-bottom: 40px;
+        }
+        .banner-content { max-width: 1150px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .status-pill { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--primary); font-size: 0.85rem; }
+
+        /* DIAGRAMA ARQUITECTURA */
+        .architecture-diagram { background: rgba(0,0,0,0.4); border: 1px solid rgba(0,255,135,0.2); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; position: relative; overflow: hidden; }
+        .architecture-diagram::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--primary); opacity: 0.3; animation: scan 3s linear infinite; }
+        @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+        .arch-layer { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 12px; margin-bottom: 8px; border-left: 3px solid var(--text-muted); }
+        .arch-layer.hardware { border-left-color: var(--accent); }
+        .arch-layer.backend { border-left-color: var(--primary); }
+        .arch-layer.cloud { border-left-color: var(--secondary); }
+        .layer-label { font-size: 0.6rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 5px; }
+        .components { display: flex; gap: 6px; flex-wrap: wrap; }
+        .component { background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; border: 1px solid var(--border); }
+        .arch-arrow { text-align: center; color: var(--primary); font-size: 1.2rem; margin: 2px 0; }
+
+        /* CARDS Y OTROS */
+        .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 45px; margin-bottom: 50px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 50px; transition: 0.3s; }
+        .project-card:hover { border-color: var(--primary-glow); transform: translateY(-5px); }
+        .metric-box { background: rgba(0,0,0,0.2); padding: 30px; border-radius: 16px; text-align: center; border: 1px solid var(--border); }
+        .metric-val { font-size: 3rem; font-weight: 800; color: var(--primary); }
         
-        /* --- NAVEGACIÓN --- */
-        nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 20px 5%; background: rgba(5, 8, 15, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-        .brand { font-weight: 800; letter-spacing: -1px; } .brand span { color: var(--primary); }
-
-        /* --- HERO --- */
-        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 140px 20px 60px; }
-        .container { max-width: 1100px; width: 100%; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
-        h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; font-weight: 800; margin-bottom: 20px; }
-        .highlight { color: var(--primary); }
-        .description { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 30px; }
-
-        /* --- CARDS --- */
-        .grid-projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; padding: 0 5%; max-width: 1200px; margin: 0 auto 100px; }
-        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 35px; transition: 0.3s; position: relative; overflow: hidden; }
-        .card:hover { border-color: var(--primary); transform: translateY(-5px); }
-        .tag { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--primary); margin-bottom: 10px; display: block; }
-        h3 { font-size: 1.5rem; margin-bottom: 15px; }
-        .btn-mini { font-size: 0.8rem; font-weight: 700; color: var(--primary); text-decoration: none; border: 1px solid var(--primary); padding: 8px 16px; border-radius: 8px; display: inline-block; margin-top: 20px; }
-        .btn-mini:hover { background: var(--primary); color: #000; }
-
-        /* --- DIAGRAMA --- */
-        .arch-mini { background: rgba(0,0,0,0.3); border-radius: 10px; padding: 15px; margin: 15px 0; font-size: 0.8rem; border-left: 3px solid var(--primary); }
+        .stack-pill { background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+        .stack-icon { width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); }
         
-        @media (max-width: 850px) { .container { grid-template-columns: 1fr; text-align: center; } }
+        .btn-primary { background: var(--primary); color: #05080f; padding: 14px 34px; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 0 20px var(--primary-glow); transition: 0.2s; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 30px var(--primary-glow); }
+
+        #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .hero-img { width: 100%; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+
+        @media (max-width: 900px) { .container, .project-card { grid-template-columns: 1fr; text-align: center; } .architecture-diagram { display: none; } }
     </style>
 </head>
 <body>
 
+    <div id="leaf-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; transition:opacity 1s;">
+        <canvas id="leaf-canvas"></canvas>
+    </div>
+
     <nav>
-        <div class="brand">JAAIDI<span>0</span></div>
-        <div style="display: flex; gap: 20px;">
-            <a href="https://github.com/jaaidi0" target="_blank" style="color: var(--text); text-decoration: none; font-weight: 600;">GitHub</a>
-            <a href="https://linkedin.com/in/el-jaidi" target="_blank" style="color: var(--text); text-decoration: none; font-weight: 600;">LinkedIn</a>
+        <div class="brand">EL MOSTAPHA <span>JAAIDI</span></div>
+        <div style="display: flex; align-items: center;">
+            <div class="nav-items">
+                <a href="#projects" data-key="nav_projects">Proyectos</a>
+                <a href="https://linkedin.com/in/el-jaidi" target="_blank">LinkedIn</a>
+            </div>
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="setLanguage('es')">ES</button>
+                <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+            </div>
         </div>
     </nav>
 
+    <canvas id="particles"></canvas>
+
     <section class="hero">
         <div class="container">
-            <div class="hero-text">
-                <div style="color: var(--primary); font-weight: 800; margin-bottom: 10px; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem;">
-                    Senior Agro-Tech Engineer & Data Architect
+            <div class="hero-content">
+                <div class="origin-badge">
+                    <div class="live-dot" style="width:8px; height:8px; background:var(--primary); border-radius:50%; animation: pulse 2s infinite;"></div> 
+                    <span>Biología → Ingeniería de Datos</span>
                 </div>
-                <h1>Transformo sensores en <br><span class="highlight">decisiones estratégicas.</span></h1>
-                <p class="description">
-                    Diseño sistemas distribuidos que <strong>anticipan plagas y optimizan el riego</strong>, eliminando la incertidumbre del campo mediante Python, IA e infraestructura Multi-Cloud.
+                
+                <h1>EL MOSTAPHA JAAIDI</h1>
+                <div class="role-subtitle">
+                    <span data-key="role">Senior Agro-Tech Engineer</span> & Data Systems Architect
+                </div>
+                
+                <p data-key="hero_desc">
+                    Transformo señales biológicas en decisiones estratégicas. Diseño infraestructuras IoT que 
+                    <strong>anticipan plagas y optimizan el riego</strong> eliminando la incertidumbre del campo.
                 </p>
-                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                    <a href="#proyectos" class="btn-mini" style="background: var(--primary); color: #000; padding: 12px 24px;">Ver Portafolio Completo</a>
-                    <a href="mailto:eljaa@alum.us.es" class="btn-mini" style="padding: 12px 24px;">Contactar</a>
+
+                <div style="display: flex; gap: 10px; margin-bottom: 40px; flex-wrap: wrap;">
+                    <div class="stack-pill"><div class="stack-icon"></div> Python Expert</div>
+                    <div class="stack-pill"><div class="stack-icon"></div> IoT Systems</div>
+                    <div class="stack-pill"><div class="stack-icon" style="background:var(--accent)"></div> Cloud Native</div>
                 </div>
+
+                <a href="#projects" class="btn-primary" data-key="btn_projects">Ver Casos de Estudio</a>
             </div>
-            
-            <div class="card" style="border-left: 4px solid var(--accent);">
-                <span class="tag" style="color: var(--accent);">Hito 2026</span>
-                <h3>AgroSentinel v1.4.0</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted);">Arquitectura distribuida GCP Madrid + DigitalOcean Frankfurt con Gemini 2.5 Flash.</p>
-                <div class="arch-mini">
-                    📡 IoT Core → 🧠 IA Frankfurt → 📱 Video Report
-                </div>
+
+            <div class="hero-img-wrapper">
+                <img src="img/foto.png" alt="Mostapha Jaaidi" class="hero-img" onerror="this.src='https://ui-avatars.com/api/?name=Mostapha+Jaidi&background=0e121b&color=00ff9d&size=400'">
             </div>
         </div>
     </section>
 
-    <section id="proyectos">
-        <div style="text-align: center; margin-bottom: 60px;">
-            <h2 style="font-size: 2.5rem;">Ecosistema de Proyectos</h2>
-            <p style="color: var(--text-muted);">Soluciones integrales de la Capa Física a la Capa de Datos</p>
-        </div>
-
-        <div class="grid-projects">
-            <div class="card">
-                <span class="tag">IoT & Intelligence</span>
-                <h3>AgroSentinel IoT</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted);">
-                    Reducción del 40% en fungicidas mediante el cálculo en tiempo real del VPD y diagnósticos biológicos generados por IA.
-                </p>
-                <div class="arch-mini">Docker • TimescaleDB • MQTT • FastAPI</div>
-                <a href="https://github.com/jaaidi0/AgroSentinel" class="btn-mini">Explorar Repo</a>
+    <section class="availability-banner">
+        <div class="banner-content">
+            <div class="status-pill">
+                <div style="width:10px; height:10px; background:var(--primary); border-radius:50%; box-shadow: 0 0 10px var(--primary);"></div>
+                DISPONIBLE PARA PRÁCTICAS FCT (MARZO 2026)
             </div>
-
-            <div class="card">
-                <span class="tag">Data Engineering</span>
-                <h3>AEMET Intelligence</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted);">
-                    Optimización extrema de pipelines climáticos. Reducción de latencia de 130s a 1.14s mediante concurrencia y caché multinivel.
-                </p>
-                <div class="arch-mini">Python • ThreadPool • Redis • Streamlit</div>
-                <a href="https://github.com/jaaidi0/aemet-dashboard-pro" class="btn-mini">Ver Demo</a>
-            </div>
-
-            <div class="card" style="border-bottom: 4px solid var(--secondary);">
-                <span class="tag" style="color: var(--secondary);">Frontend & UX</span>
-                <h3>Ecosistema Bio-Digital</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted);">
-                    Portfolio PWA v9.0 diseñado bajo principios de biomimética. Interfaz sensorial optimizada para la visualización de datos complejos.
-                </p>
-                <div class="arch-mini">Vanilla JS • Canvas API • i18n • CSS Glass</div>
-                <a href="https://jaaidi0.github.io" class="btn-mini" style="border-color: var(--secondary); color: var(--secondary);">Lanzar App</a>
+            <div style="font-size: 0.9rem; color: var(--text-muted);">
+                🎯 Backend / IoT / Automation en Sevilla o Remoto
             </div>
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 80px 20px; border-top: 1px solid var(--border);">
-        <p style="color: var(--primary); font-weight: 800; margin-bottom: 10px;">DISPONIBLE PARA PRÁCTICAS MARZO 2026</p>
-        <p style="font-size: 0.8rem; color: var(--text-muted);">© 2026 EL MOSTAPHA JAAIDI • Engineered for Impact in Sevilla</p>
+    <section id="projects" style="max-width: 1150px; margin: 0 auto; padding: 60px 20px;">
+        <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 50px;">Casos de Estudio</h2>
+
+        <article class="project-card">
+            <div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 10px;">AgroSentinel IoT <span style="color:var(--primary)">●</span></h3>
+                <p data-key="p1_sub" style="color:var(--primary); font-weight:600; margin-bottom:20px;">Monitorización microclimática predictiva</p>
+                
+                <div class="architecture-diagram">
+                    <div class="arch-layer hardware">
+                        <span class="layer-label">Hardware (Edge)</span>
+                        <div class="components">
+                            <span class="component">ESP32</span><span class="component">DHT22</span><span class="component">MQTT</span>
+                        </div>
+                    </div>
+                    <div class="arch-arrow">↓</div>
+                    <div class="arch-layer backend">
+                        <span class="layer-label">Backend (Intelligence)</span>
+                        <div class="components">
+                            <span class="component">FastAPI</span><span class="component">Python ETL</span><span class="component">VPD Engine</span>
+                        </div>
+                    </div>
+                    <div class="arch-arrow">↓</div>
+                    <div class="arch-layer cloud">
+                        <span class="layer-label">Cloud Infrastructure</span>
+                        <div class="components">
+                            <span class="component">Docker</span><span class="component">GCP/DO</span><span class="component">TimescaleDB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p data-key="p1_sol" style="margin-top:20px;">
+                    <strong>De la biología al Cloud:</strong> Sistema distribuido que reduce un 25% el riesgo fúngico mediante el análisis en tiempo real del VPD.
+                </p>
+            </div>
+            <div class="metric-box">
+                <div class="metric-val">24/7</div>
+                <div style="font-size: 0.8rem; text-transform: uppercase; margin: 10px 0;">Uptime Telemetría</div>
+                <a href="https://github.com/jaaidi0/AgroSentinel" target="_blank" class="btn-primary" style="padding: 10px 20px; font-size: 0.8rem; margin-top: 20px;">Ver Código</a>
+            </div>
+        </article>
+
+        <article class="project-card">
+            <div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 10px;">AEMET Intelligence <span style="color:var(--secondary)">●</span></h3>
+                <p data-key="p2_sub" style="color:var(--secondary); font-weight:600; margin-bottom:20px;">Optimización de ingesta masiva</p>
+                <p data-key="p2_sol">
+                    Reducción de latencia de 130s a 1.14s mediante concurrencia asíncrona y caché multinivel.
+                </p>
+            </div>
+            <div class="metric-box">
+                <div class="metric-val">1.14s</div>
+                <div style="font-size: 0.8rem; text-transform: uppercase; margin: 10px 0;">Latencia Optimizada</div>
+                <a href="https://github.com/jaaidi0/aemet-dashboard-pro" target="_blank" class="btn-primary" style="padding: 10px 20px; font-size: 0.8rem; margin-top: 20px; background:var(--secondary)">Ver Demo</a>
+            </div>
+        </article>
+    </section>
+
+    <footer style="text-align: center; padding: 100px 20px; border-top: 1px solid var(--border);">
+        <p style="color:var(--text-muted); font-size: 0.9rem;">© 2026 El Mostapha Jaaidi. Engineered for Impact in Dos Hermanas, Sevilla.</p>
     </footer>
 
+    <script>
+        const translations = {
+            es: {
+                nav_projects: "Proyectos",
+                role: "Senior Agro-Tech Engineer",
+                hero_desc: "Transformo señales biológicas en decisiones estratégicas. Diseño infraestructuras IoT que anticipan plagas y optimizan el riego.",
+                btn_projects: "Ver Casos de Estudio",
+                p1_sub: "Monitorización microclimática predictiva",
+                p1_sol: "De la biología al Cloud: Sistema distribuido que reduce un 25% el riesgo fúngico mediante análisis de VPD.",
+                p2_sub: "Optimización de ingesta masiva",
+                p2_sol: "Reducción de latencia de 130s a 1.14s mediante concurrencia asíncrona."
+            },
+            en: {
+                nav_projects: "Projects",
+                role: "Senior Agro-Tech Engineer",
+                hero_desc: "Turning biological signals into strategic decisions. I design IoT infrastructures that predict pests and optimize irrigation.",
+                btn_projects: "View Case Studies",
+                p1_sub: "Predictive microclimate monitoring",
+                p1_sol: "From Biology to Cloud: Distributed system reducing fungal risk by 25% through VPD analysis.",
+                p2_sub: "Massive ingestion optimization",
+                p2_sol: "Latency reduced from 130s to 1.14s using asynchronous concurrency."
+            }
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang][key]) el.innerHTML = translations[lang][key];
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = Array.from(document.querySelectorAll('.lang-btn')).find(btn => btn.textContent.toLowerCase() === lang);
+            if(activeBtn) activeBtn.classList.add('active');
+            localStorage.setItem('lang', lang);
+        }
+
+        // --- PARTICLES ENGINE ---
+        const canvas = document.getElementById("particles");
+        const ctx = canvas.getContext("2d");
+        let w = canvas.width = window.innerWidth;
+        let h = canvas.height = window.innerHeight;
+        const particles = Array.from({length: 50}, () => ({
+            x: Math.random() * w, y: Math.random() * h,
+            vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4
+        }));
+        function animate() {
+            ctx.clearRect(0,0,w,h);
+            particles.forEach(p => {
+                p.x += p.vx; p.y += p.vy;
+                if(p.x<0 || p.x>w) p.vx*=-1; if(p.y<0 || p.y>h) p.vy*=-1;
+                ctx.fillStyle = "rgba(0,255,157,0.2)";
+                ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI*2); ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // --- LEAF ANIMATION (Intro) ---
+        (function() {
+            const lCanvas = document.getElementById('leaf-canvas');
+            const lCtx = lCanvas.getContext('2d');
+            let lw = lCanvas.width = window.innerWidth;
+            let lh = lCanvas.height = window.innerHeight;
+            let leaves = Array.from({length: 40}, () => ({
+                x: Math.random() * lw, y: Math.random() * -lh,
+                vy: Math.random() * 2 + 1, size: Math.random() * 3 + 2
+            }));
+            function drawLeaves() {
+                lCtx.clearRect(0,0,lw,lh);
+                leaves.forEach(l => {
+                    l.y += l.vy;
+                    lCtx.fillStyle = "#00ff9d";
+                    lCtx.beginPath(); lCtx.arc(l.x, l.y, l.size, 0, Math.PI*2); lCtx.fill();
+                });
+                if(leaves[0].y < lh) requestAnimationFrame(drawLeaves);
+                else document.getElementById('leaf-overlay').style.opacity = '0';
+            }
+            drawLeaves();
+        })();
+
+        window.addEventListener('resize', () => { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; });
+        setLanguage(localStorage.getItem('lang') || 'es');
+    </script>
 </body>
 </html>
